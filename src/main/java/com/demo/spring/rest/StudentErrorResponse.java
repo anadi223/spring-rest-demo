@@ -12,6 +12,7 @@ public class StudentErrorResponse {
 		this.message = message;
 		this.timeStamp = timeStamp;
 	}
+	public StudentErrorResponse() {}
 	public int getStatus() {
 		return status;
 	}

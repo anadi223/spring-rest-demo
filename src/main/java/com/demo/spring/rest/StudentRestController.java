@@ -3,7 +3,12 @@ package com.demo.spring.rest;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.context.Theme;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +40,12 @@ public class StudentRestController {
 		theStudents.add(new Student("ANADI", "Pandey"));
 		theStudents.add(new Student("ANADI", "Kaushik"));
 		theStudents.add(new Student("ANADI", "Bajpayee"));
+		//TO handle garbage value thrown to the url
+		if(studentId >=theStudents.size() || studentId <0) {
+			throw new StudentNotFoundException("Student not found - "+ studentId);
+		}
 		
 		return theStudents.get(studentId);
 	}
+
 }
